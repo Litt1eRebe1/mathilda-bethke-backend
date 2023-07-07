@@ -35,3 +35,18 @@ The JSON file contains three days worth of data which will determine how you cal
 - How to run the spec: rspec spec/application_report_spec.rb
 - For improvement:
   - 3.to_f could be dynamic instead of a fixed integer.
+
+# INFORMATION FOR THE COMPLETED ASSIGNMENT
+## Instructions on how to run the specs
+- Execute the following command from within the project root directory: `rspec spec`
+
+## Summary or justification of design decisions or architecture
+- For this task there was not a lot of infrastructure used, just implemented some services in the name of keeping it simple. There is the main `application-report` service, as provided by the tutorial example, and an additional `display service` to keep main simple. 
+
+## Areas for improvement
+- The application can be greatly improved by turning it into a full fledged application that has the necessary functionality, plus the additional functionality of being able to either upload a file, or directly integrate with the application services. 
+
+## HOW TO RUN
+- use the terminal to navigate to the route directory for the application and execute the following command: `ruby app/main.rb`
+  - Please note that if there are troubles with the file path, make sure that the command is not being executed from within the app directory
+- To change which file to use, update the `FILE_PATH` variable in the `main.rb` file
