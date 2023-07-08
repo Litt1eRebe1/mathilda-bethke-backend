@@ -39,7 +39,7 @@ The JSON file contains three days worth of data which will determine how you cal
 # INFORMATION FOR THE COMPLETED ASSIGNMENT
 ## Instructions on how to run the specs
 - Execute the following command from within the project root directory: `rspec spec`
--- to note: The tests were updated since they were testing for rounded down values.
+  - to note: The tests were updated since they were testing for rounded down values.
 
 ## Summary or justification of design decisions or architecture
 - For this task there was not a lot of infrastructure used, just implemented some services in the name of keeping it simple. There is the main `application-report` service, as provided by the tutorial example, and an additional `display service` to keep main simple. 
@@ -47,13 +47,13 @@ The JSON file contains three days worth of data which will determine how you cal
 - A menu is shows which allows the user to input which channel to filter by, this allows either selecting the menu option, or entering the name of the channel. 
 - The user input is checked, and invalid input will not be allowed.
 - Upon selection the following logic is applied:
--- The data is filtered by the provided channel
--- The data is grouped per hour
--- The average is calculated in the following way:
---- The number of days is calculated by grouping per day and getting the count
---- If there is no value for a given hour then zero is returned as the average
---- Else the values is cast to a float to avoid an integer division problem, then it is divided by the number of days and the .ceil function is used to round up the value
---- This data is then stored in a hash which is returned and displayed
+  - The data is filtered by the provided channel
+  - The data is grouped per hour
+  - The average is calculated in the following way:
+    - The number of days is calculated by grouping per day and getting the count
+    - If there is no value for a given hour then zero is returned as the average
+    - Else the values is cast to a float to avoid an integer division problem, then it is divided by the number of days and the .ceil function is used to round up the value
+    - This data is then stored in a hash which is returned and displayed
 
 ## Areas for improvement
 - The application can be greatly improved by turning it into a full fledged application that has the necessary functionality, plus the additional functionality of being able to either upload a file, or directly integrate with the application services. 
