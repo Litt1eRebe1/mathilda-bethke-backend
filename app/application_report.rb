@@ -4,8 +4,9 @@ require 'time'
 class ApplicationReport
   def initialize(json_filename)
     @file = File.read(json_filename)
-    @data = parse_data(@file)
+    @file_data = parse_data(@file)
     @counts = {}
+    @data = []
   end
 
   def retrieve_trend(channel = 'all')
@@ -26,8 +27,10 @@ class ApplicationReport
   # Filters the data by the given application channel - all, website, etc.
   def filter_by_channel(channel)
     unless channel == 'all' 
-      @data = @data&.select { |application| application['channel'] == channel }  
+      @data = @file_data&.select { |application| application['channel'] == channel }  
+      return
     end
+    @data = @file_data
   end
 
   # Groups the data into records per hour
@@ -44,7 +47,7 @@ class ApplicationReport
   def average_per_hour(records)
     days = number_of_days
     for hour in 0..23 do
-      value = !records[hour].nil? && records[hour].any? ? (records[hour]&.count.to_f/days + 0.5).floor : 0
+      value = !records[hour].nil? && records[hour].any? ? (records[hour]&.count.to_f/days).ceil : 0
       @counts.store(hour, value)
     end
   end
