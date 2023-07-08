@@ -1,5 +1,6 @@
 require 'json'
 require 'time'
+
 # ApplicationReport class
 class ApplicationReport
   def initialize(json_filename)
@@ -35,12 +36,12 @@ class ApplicationReport
 
   # Groups the data into records per hour
   def group_by_hour
-    @data.group_by{ |application| Time.parse(application["timestamp"]).hour }
+    @data.group_by{ |application| convert_to_timezone(Time.parse(application["timestamp"])).hour }
   end 
 
   # Calculates the number of days for which data is provided
   def number_of_days
-     @data.group_by{ |application| Time.parse(application["timestamp"]).day }&.count
+     @data.group_by{ |application| convert_to_timezone(Time.parse(application["timestamp"])).day }&.count
   end
 
   # Calculates the average records per hour over the given period 
@@ -50,5 +51,9 @@ class ApplicationReport
       value = !records[hour].nil? && records[hour].any? ? (records[hour]&.count.to_f/days).ceil : 0
       @counts.store(hour, value)
     end
+  end
+
+  def convert_to_timezone(time)
+    time.utc.localtime("+12:00")
   end
 end
